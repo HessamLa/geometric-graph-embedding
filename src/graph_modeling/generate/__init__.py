@@ -48,7 +48,7 @@ def write_graph(out_dir: Union[str, Path], **graph_config):
         tree = nx.transitive_closure(tree)
 
     logger.info("Converting to sparse matrix")
-    t_scipy = nx.to_scipy_sparse_matrix(tree, format="coo")
+    t_scipy = nx.adjacency_matrix(tree)
     graph_folder = out_dir / f"{graph_config['type']}/{graph_folder_name}/"
     graph_folder.mkdir(parents=True, exist_ok=True)
     graph_file_stub = graph_folder / str(graph_config["seed"])
